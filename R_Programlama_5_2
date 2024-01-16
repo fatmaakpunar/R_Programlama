@@ -1,0 +1,40 @@
+##### 3 boyutlu grafikler cizme
+
+library(scatterplot3d)
+attach(mtcars)
+scatterplot3d(x=disp,y=mpg,z=wt,main="3 boyutlu cizim")
+
+attach(mtcars)
+scatterplot3d(x=wt,
+y=disp,
+z=mpg,
+pch=16,
+highlight.3d=TRUE,
+type="h")
+
+d3<-scatterplot3d(x=wt,
+y=disp,
+z=mpg,
+pch=16,type="h")
+fit<-lm(mpg~wt+disp)
+d3$plane3d(fit)
+
+### plot3D paketi ile ornekler
+
+library(plot3D)
+x<-seq(-pi,pi,by=0.2)
+y<-seq(-pi,pi,by=0.3)
+grid<-mesh(x,y)
+z<-with(grid,cos(x)*sin(y))
+persp3D(z=z,x=x,y=y)
+
+x<-seq(0,pi,length.out=50)
+y<-seq(0,2*pi,length.out=50)
+m<-mesh(x,y)
+phi<-m$x
+theta<-m$y
+r<-sin(4*pi)^3+cos(2*pi)^3+sin(6*theta)^2+cos(6*theta)^4
+x<-r*sin(phi)*cos(theta)
+y<-r*cos(phi)
+z<-r*sin(phi)*sin(theta)
+surf3D(x,y,z,colvar=y,shade=0.5,box=FALSE,theta=60)
